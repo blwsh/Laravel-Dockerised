@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  app:
+    image: prlx/prlx-nginx-php-fpm:7.2
+    ports:
+    - 8080:80
+    - 443:433
+    volumes:
+    - .:/src:rw,delegated
+    environment:
+    - SITE_NAME=psa
+    - SITE_BRANCH=master
+    - ENVIRONMENT=qa
+    - DISABLE_OPCACHE="true"
+    - DISABLE_CRON="true"
+    depends_on:
+    - db
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+    - MYSQL_DATABASE=app
+    - MYSQL_ROOT_PASSWORD=root
