@@ -2,14 +2,14 @@ version: '3.1'
 
 services:
   app:
-    image: prlx/prlx-nginx-php-fpm:7.3
+    image: prlx/prlx-nginx-php-fpm:7.2
     ports:
     - 8080:80
     - 443:433
     volumes:
     - .:/src:rw,delegated
     environment:
-    - SITE_NAME=psa
+    - SITE_NAME=laravel
     - SITE_BRANCH=master
     - ENVIRONMENT=qa
     - DISABLE_OPCACHE="true"
